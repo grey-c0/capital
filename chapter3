@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 3 — Where Does The Money Go?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF7;
+    --text: #1a1a1a;
+    --text-muted: #6b6b6b;
+    --accent: #c23a22;
+    --accent-light: #e8d5d0;
+    --border: #e0ddd8;
+    --card-bg: #FFFFFF;
+    --highlight: #FFF8E7;
+    --dark-bg: #1a1a1a;
+    --dark-text: #f0efe9;
+    --green: #3a7d5c;
+    --green-bright: #5cb885;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .header {
+    padding: 3rem 2rem 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header .chapter-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .header h1 {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .header .subtitle {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .narrative {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .step {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step:nth-child(1) { animation-delay: 0.1s; }
+  .step:nth-child(2) { animation-delay: 0.15s; }
+  .step:nth-child(3) { animation-delay: 0.2s; }
+  .step:nth-child(4) { animation-delay: 0.25s; }
+  .step:nth-child(5) { animation-delay: 0.3s; }
+  .step:nth-child(6) { animation-delay: 0.35s; }
+  .step:nth-child(7) { animation-delay: 0.4s; }
+
+  .step-number {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .step h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .step p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .step p:last-child { margin-bottom: 0; }
+
+  .visual-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .visual-box.dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    border: none;
+  }
+
+  .visual-box.highlight {
+    background: var(--highlight);
+    border-color: #d4c9a8;
+  }
+
+  .visual-box.accent {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+  }
+
+  /* === CYCLE ANIMATION === */
+  .cycle-visual {
+    position: relative;
+  }
+
+  .cycle-round {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #333;
+  }
+
+  .cycle-round:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .cycle-round-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 0.75rem;
+  }
+
+  .cycle-entities {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cycle-entity {
+    text-align: center;
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .cycle-entity-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .cycle-entity-name {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.2rem;
+  }
+
+  .cycle-entity-value {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .val-green { color: #5cb885; }
+  .val-red { color: #ff6b54; }
+  .val-white { color: #fff; }
+  .val-yellow { color: #e8c547; }
+  .val-muted { color: #666; }
+
+  /* === WEALTH BARS (static narrative) === */
+  .wealth-bars {
+    margin: 1rem 0;
+  }
+
+  .wealth-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .wealth-bar-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    width: 100px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .dark .wealth-bar-label { color: #999; }
+
+  .wealth-bar-track {
+    flex: 1;
+    height: 28px;
+    background: #2a2a2a;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .wealth-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+    font-family: var(--serif);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    transition: width 0.8s ease;
+    min-width: fit-content;
+  }
+
+  /* === TAX COMPARISON === */
+  .tax-comparison {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .tax-card {
+    flex: 1;
+    min-width: 200px;
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .tax-card-title {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    opacity: 0.8;
+  }
+
+  .tax-card-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+    text-align: left;
+  }
+
+  .tax-card-row span:last-child {
+    font-family: var(--serif);
+    font-weight: 600;
+  }
+
+  .tax-card-total {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .tax-card-total span:last-child {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  /* === TIMELINE STEPS (Buy Borrow Die) === */
+  .timeline {
+    position: relative;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .dark .timeline::before { background: #333; }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .timeline-item:last-child { margin-bottom: 0; }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.45rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--dark-bg);
+  }
+
+  .timeline-item-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-item-text {
+    font-size: 0.85rem;
+    color: #999;
+    line-height: 1.5;
+  }
+
+  /* === INTERACTIVE === */
+  .interactive-section {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+  }
+
+  .interactive-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .interactive-section h2 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .interactive-section .lead {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 2.5rem;
+  }
+
+  .control-group { margin-bottom: 2rem; }
+
+  .control-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.6rem;
+  }
+
+  .control-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #ccc;
+  }
+
+  .control-value {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--dark-bg);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--dark-bg);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .result-card {
+    background: #222;
+    border-radius: 4px;
+    padding: 1.25rem;
+  }
+
+  .result-card.full-width { grid-column: 1 / -1; }
+
+  .result-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 0.4rem;
+  }
+
+  .result-number {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .result-number.red { color: #ff6b54; }
+  .result-number.green { color: #5cb885; }
+  .result-number.white { color: #fff; }
+  .result-number.yellow { color: #e8c547; }
+
+  .result-sub {
+    font-size: 0.75rem;
+    color: #777;
+    margin-top: 0.25rem;
+  }
+
+  /* === SIMULATION CHART === */
+  .sim-chart {
+    margin-top: 2rem;
+    background: #222;
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .sim-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sim-chart-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+  }
+
+  .sim-legend {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.7rem;
+    color: #999;
+  }
+
+  .legend-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .sim-chart-area {
+    position: relative;
+    height: 260px;
+    border-left: 1px solid #333;
+    border-bottom: 1px solid #333;
+  }
+
+  .sim-y-labels {
+    position: absolute;
+    left: -4px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateX(-100%);
+    padding-right: 6px;
+  }
+
+  .sim-y-label {
+    font-size: 0.55rem;
+    color: #555;
+    text-align: right;
+  }
+
+  .sim-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 100%;
+    padding: 0 0.25rem;
+    gap: 1px;
+  }
+
+  .sim-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 50px;
+    height: 100%;
+  }
+
+  .sim-bar-pair {
+    display: flex;
+    gap: 1px;
+    width: 100%;
+    flex: 1;
+    align-items: flex-end;
+  }
+
+  .sim-bar {
+    flex: 1;
+    border-radius: 2px 2px 0 0;
+    min-height: 1px;
+    transition: height 0.5s ease;
+  }
+
+  .sim-bar.owner { background: #ff6b54; }
+  .sim-bar.workers { background: #5cb885; }
+  .sim-bar.bank { background: #e8c547; }
+
+  .sim-cycle-label {
+    font-size: 0.5rem;
+    color: #666;
+    margin-top: 3px;
+    text-align: center;
+  }
+
+  /* === REFORM TOGGLE === */
+  .reform-section {
+    margin-top: 2rem;
+    background: #222;
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .reform-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 1rem;
+  }
+
+  .reform-toggle {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .reform-btn {
+    padding: 0.5rem 1rem;
+    background: #333;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #ccc;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .reform-btn:hover { background: #3a3a3a; border-color: #555; }
+
+  .reform-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .reform-message {
+    font-size: 0.85rem;
+    color: #999;
+    line-height: 1.6;
+    padding: 1rem;
+    background: #1a1a1a;
+    border-radius: 4px;
+    min-height: 3rem;
+  }
+
+  .reform-message strong {
+    color: #ccc;
+  }
+
+  /* === TAKEAWAY === */
+  .takeaway {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .takeaway-line {
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 0 auto 1.5rem;
+  }
+
+  .takeaway p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .takeaway strong { color: var(--text); font-weight: 600; }
+
+  /* === EPILOGUE === */
+  .epilogue {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .epilogue-inner {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .epilogue-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .epilogue p {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: #999;
+  }
+
+  .epilogue p strong { color: #fff; font-weight: 600; }
+
+  .epilogue .final-question {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 2.5rem;
+    line-height: 1.4;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    html { font-size: 16px; }
+    .header h1 { font-size: 2rem; }
+    .results-grid { grid-template-columns: 1fr; }
+    .tax-comparison { flex-direction: column; }
+    .cycle-entity { min-width: 60px; }
+    .cycle-entity-value { font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="chapter-label">Chapter 3 of 3</div>
+  <h1>Where Does The Money Go?</h1>
+  <div class="subtitle">If everyone works hard, why does wealth keep concentrating?</div>
+</div>
+
+<div class="narrative">
+
+  <!-- STEP 1: THE LOOP -->
+  <div class="step">
+    <div class="step-number">Step 1</div>
+    <h2>The loop</h2>
+    <p>We now know two things. Money is created as debt with interest (Chapter 1). Profit comes from paying workers less than they produce (Chapter 2). Now let's watch what happens when this runs over time.</p>
+    <p>Same economy. One owner, ten workers, one bank. Let's run three cycles and track where the money goes after each one.</p>
+
+    <div class="visual-box dark">
+      <div class="cycle-visual">
+
+        <div class="cycle-round">
+          <div class="cycle-round-label">After Cycle 1</div>
+          <div class="cycle-entities">
+            <div class="cycle-entity">
+              <div class="cycle-entity-icon">🏦</div>
+              <div class="cycle-entity-name">Bank</div>
+              <div class="cycle-entity-value val-yellow">€50</div>
+            </div>
+            <div class="cycle-entity">
+              <div class="cycle-entity-icon">🤵</div>
+              <div class="cycle-entity-name">Owner</div>
+              <div class="cycle-entity-value val-red">€350</div>
+            </div>
+            <div class="cycle-entity">
+              <div class="cycle-entity-icon">👷 ×10</div>
+              <div class="cycle-entity-name">Workers</div>
+              <div class="cycle-entity-value val-green">€0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cycle-round">
+          <div class="cycle-round-label">After Cycle 2</div>
+          <div class="cycle-entities">
+            <div class="cycle-entity">
+              <div class="cycle-entity-icon">🏦</div>
+              <div class="cycle-entity-name">Bank</div>
+              <div class="cycle-entity-value val-yellow">€103</div>
+            </div>
+            <div class="cycle-entity">
+              <div class="cycle-entity-icon">🤵</div>
+              <div class="cycle-entity-name">Owner</div>
+              <div class="cycle-entity-value val-red">€697</div>
+            </div>
+            <div class="cycle-entity">
+              <div class="cycle-entity-icon">👷 ×10</div>
+              <div class="cycle-entity-name">Workers</div>
+              <div class="cycle-entity-value val-green">€0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cycle-round">
+          <div class="cycle-round-label">After Cycle 3</div>
+          <div class="cycle-entities">
+            <div class="cycle-entity">
+              <div class="cycle-entity-icon">🏦</div>
+              <div class="cycle-entity-name">Bank</div>
+              <div class="cycle-entity-value val-yellow">€158</div>
+            </div>
+            <div class="cycle-entity">
+              <div class="cycle-entity-icon">🤵</div>
+              <div class="cycle-entity-name">Owner</div>
+              <div class="cycle-entity-value val-red">€1,042</div>
+            </div>
+            <div class="cycle-entity">
+              <div class="cycle-entity-icon">👷 ×10</div>
+              <div class="cycle-entity-name">Workers</div>
+              <div class="cycle-entity-value val-green">€0</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p>Workers earned wages — and spent them on food, rent, goods. Their money flowed right back to the companies. At the end of each cycle, they're back to zero. The owner, meanwhile, accumulates. The bank takes its cut. The gap widens every round.</p>
+    <p>Nobody cheated. Nobody stole. <strong>The structure moved money upward.</strong></p>
+  </div>
+
+  <!-- STEP 2: WHY WORKERS STAY AT ZERO -->
+  <div class="step">
+    <div class="step-number">Step 2</div>
+    <h2>Why workers stay at zero</h2>
+    <p>Workers spend their wages. They have to — on food, rent, transportation, clothes. The money they earn goes right back to the companies that employ them (or other companies owned by other owners). This isn't irresponsible spending. It's the cost of being alive.</p>
+
+    <div class="visual-box highlight">
+      <div style="text-align: center; padding: 0.5rem 0;">
+        <div style="font-size: 0.85rem; margin-bottom: 1rem;">Each cycle, money flows in a circle — but the split is always unequal.</div>
+        <div style="font-family: var(--serif); font-size: 1.3rem; line-height: 2.2;">
+          Workers produce value → company takes profit<br>
+          Workers receive wages → <span style="color: var(--accent);">spend them to survive</span><br>
+          Money returns to companies → <span style="color: var(--accent);">owner accumulates</span><br>
+          Repeat
+        </div>
+      </div>
+    </div>
+
+    <p>The owner doesn't need to spend all their profit to survive. They can save it, invest it, use it to buy more companies. Wealth doesn't just accumulate — it <em>compounds</em>. The rich get richer not because they work harder each cycle, but because <strong>wealth generates more wealth</strong> while wages get spent.</p>
+  </div>
+
+  <!-- STEP 3: THE TAX TRICK -->
+  <div class="step">
+    <div class="step-number">Step 3</div>
+    <h2>The tax trick</h2>
+    <p>Now the owner is wealthy. Their company is worth millions on paper. If they took a salary or sold shares, they'd pay income or capital gains tax — potentially 30–40%. So instead, they do something perfectly legal:</p>
+
+    <div class="visual-box dark">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-item-title" style="color: #fff;">1. Buy</div>
+          <div class="timeline-item-text">The owner builds or buys assets — a company, real estate, stocks. These grow in value over time. On paper, they're wealthy. But they haven't "earned" anything taxable.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item-title" style="color: #fff;">2. Borrow</div>
+          <div class="timeline-item-text">Instead of selling assets (which triggers taxes), they borrow against them. A bank lends them €1M at 2–3% interest, using their shares as collateral. Loans aren't income. <strong style="color: #ff6b54;">No taxes.</strong></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-item-title" style="color: #fff;">3. Die</div>
+          <div class="timeline-item-text">When the owner dies, heirs inherit the assets at current market value (the "stepped-up basis"). All the gains from the owner's lifetime — <strong style="color: #ff6b54;">never taxed.</strong> The heirs can borrow against the assets too. The cycle continues.</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Now compare what happens in a single year:</p>
+
+    <div class="visual-box dark" style="padding: 1.5rem;">
+      <div class="tax-comparison">
+        <div class="tax-card" style="background: var(--green); color: #fff;">
+          <div class="tax-card-title">👷 Worker — earns €40,000/yr</div>
+          <div class="tax-card-row"><span>Income</span><span>€40,000</span></div>
+          <div class="tax-card-row"><span>Income tax (~30%)</span><span>−€12,000</span></div>
+          <div class="tax-card-row"><span>Social contributions</span><span>−€4,000</span></div>
+          <div class="tax-card-total"><span>Taxes paid</span><span>€16,000</span></div>
+        </div>
+        <div class="tax-card" style="background: var(--accent); color: #fff;">
+          <div class="tax-card-title">🤵 Owner — worth €10,000,000</div>
+          <div class="tax-card-row"><span>Salary taken</span><span>€0</span></div>
+          <div class="tax-card-row"><span>Shares sold</span><span>€0</span></div>
+          <div class="tax-card-row"><span>Loan to live on</span><span>€500,000</span></div>
+          <div class="tax-card-row"><span>Loan interest (2%)</span><span>−€10,000</span></div>
+          <div class="tax-card-total"><span>Taxes paid</span><span>€0</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p>The worker paid €16,000 in taxes on €40,000 of earnings. The owner spent €500,000 and paid nothing. This isn't illegal. It isn't a loophole being exploited against the spirit of the law. <strong>This is how the system is designed.</strong></p>
+  </div>
+
+  <!-- STEP 4: EVEN WITHOUT THE TRICK -->
+  <div class="step">
+    <div class="step-number">Step 4</div>
+    <h2>But even without the trick</h2>
+    <p>Tax avoidance accelerates inequality, but it isn't the cause. Even if the owner paid full taxes on every euro of profit, the fundamental dynamic remains: each cycle, profit flows to owners, wages flow to workers, workers spend wages to survive, and the gap grows.</p>
+    <p>Tax reform can slow the accumulation. It cannot stop it. Because the engine is the structure itself — the debt that demands growth, the profit that demands a wage gap, and the loop that moves money upward every single cycle.</p>
+
+    <div class="visual-box accent">
+      <p style="font-family: var(--serif); font-size: 1.1rem; text-align: center; line-height: 1.6; margin: 0;">
+        Taxing wealth more fairly is worth doing.<br>
+        But it's treating a symptom.<br>
+        <span style="opacity: 0.85; font-size: 0.95rem;">The disease is a system where money flows upward by design,<br>not by accident.</span>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- === INTERACTIVE === -->
+<div class="interactive-section">
+  <div class="interactive-inner">
+    <h2>Run the simulation</h2>
+    <p class="lead">Watch wealth accumulate over time. Try reforms. See what changes — and what doesn't.</p>
+
+    <div class="control-group">
+      <div class="control-label">
+        <span class="control-name">Worker wage share (% of value produced)</span>
+        <span class="control-value" id="wageShareDisplay">40%</span>
+      </div>
+      <input type="range" id="wageShareSlider" min="10" max="90" step="5" value="40">
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <span class="control-name">Interest rate on debt</span>
+        <span class="control-value" id="interestDisplay">5%</span>
+      </div>
+      <input type="range" id="interestSlider" min="1" max="20" step="0.5" value="5">
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <span class="control-name">Tax rate on profits</span>
+        <span class="control-value" id="taxDisplay">0%</span>
+      </div>
+      <input type="range" id="taxSlider" min="0" max="80" step="5" value="0">
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <span class="control-name">Years to simulate</span>
+        <span class="control-value" id="yearsDisplay">20</span>
+      </div>
+      <input type="range" id="yearsSlider" min="5" max="50" step="1" value="20">
+    </div>
+
+    <!-- Results -->
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-label">Owner's wealth after</div>
+        <div class="result-number red" id="rOwner">—</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Worker's lifetime earnings</div>
+        <div class="result-number green" id="rWorkerTotal">—</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Owner-to-worker wealth ratio</div>
+        <div class="result-number white" id="rRatio">—</div>
+        <div class="result-sub" id="rRatioSub"></div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Total taxes paid by owner</div>
+        <div class="result-number yellow" id="rOwnerTax">—</div>
+        <div class="result-sub" id="rTaxSub"></div>
+      </div>
+    </div>
+
+    <!-- CHART -->
+    <div class="sim-chart">
+      <div class="sim-chart-header">
+        <div class="sim-chart-title">Cumulative wealth — each year</div>
+        <div class="sim-legend">
+          <span><span class="legend-dot" style="background:#ff6b54;"></span> Owner</span>
+          <span><span class="legend-dot" style="background:#5cb885;"></span> Workers (avg)</span>
+        </div>
+      </div>
+      <div class="sim-chart-area">
+        <div class="sim-y-labels" id="simYLabels"></div>
+        <div class="sim-bars" id="simBars"></div>
+      </div>
+    </div>
+
+    <!-- REFORM TOGGLES -->
+    <div class="reform-section">
+      <div class="reform-title">What if we reform the system?</div>
+      <div class="reform-toggle">
+        <button class="reform-btn" id="btnNoReform" onclick="setReform('none')">No reforms</button>
+        <button class="reform-btn" id="btnTax" onclick="setReform('tax')">Tax profits at 40%</button>
+        <button class="reform-btn" id="btnWage" onclick="setReform('wage')">Raise wages to 70%</button>
+        <button class="reform-btn" id="btnBoth" onclick="setReform('both')">Both</button>
+      </div>
+      <div class="reform-message" id="reformMessage">Select a reform to see its effect on wealth concentration.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TAKEAWAY -->
+<div class="takeaway">
+  <div class="takeaway-line"></div>
+  <p>
+    Wealth doesn't concentrate because some people work harder or because the system is "broken." It concentrates because <strong>the system is working exactly as designed</strong> — debt demands growth, growth demands profit, and profit demands a gap between work and wages.
+  </p>
+</div>
+
+<!-- EPILOGUE -->
+<div class="epilogue">
+  <div class="epilogue-inner">
+    <div class="epilogue-label">Epilogue</div>
+    <p>The economy must grow forever to service its debts. Growth requires extracting more labor and more resources each cycle. Labor is squeezed for profit. Resources are pulled from the earth.</p>
+    <p style="margin-top: 1.5rem;"><strong>This system requires infinite growth on a finite planet.</strong></p>
+    <div class="final-question">
+      What happens when it can't grow anymore?
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  A simplified model. Real economies feature government redistribution, monetary policy, financialization, and other complexities. The core structural dynamics described here operate within and through those mechanisms.
+</div>
+
+<script>
+  const wageShareSlider = document.getElementById('wageShareSlider');
+  const interestSlider = document.getElementById('interestSlider');
+  const taxSlider = document.getElementById('taxSlider');
+  const yearsSlider = document.getElementById('yearsSlider');
+
+  // Base parameters
+  const VALUE_PER_YEAR = 250000; // 10 workers × €100/day × 250 days
+  const COST_RATE = 0.2; // 20% materials
+
+  let currentReform = 'none';
+
+  function fmt(n) {
+    if (Math.abs(n) >= 1000000000) return '€' + (n / 1000000000).toFixed(1) + 'B';
+    if (Math.abs(n) >= 1000000) return '€' + (n / 1000000).toFixed(1) + 'M';
+    if (Math.abs(n) >= 1000) return '€' + (n / 1000).toFixed(1) + 'K';
+    return '€' + Math.round(n).toLocaleString('en');
+  }
+
+  function setReform(type) {
+    currentReform = type;
+    document.querySelectorAll('.reform-btn').forEach(b => b.classList.remove('active'));
+
+    if (type === 'none') {
+      document.getElementById('btnNoReform').classList.add('active');
+      wageShareSlider.value = 40;
+      taxSlider.value = 0;
+    } else if (type === 'tax') {
+      document.getElementById('btnTax').classList.add('active');
+      wageShareSlider.value = 40;
+      taxSlider.value = 40;
+    } else if (type === 'wage') {
+      document.getElementById('btnWage').classList.add('active');
+      wageShareSlider.value = 70;
+      taxSlider.value = 0;
+    } else if (type === 'both') {
+      document.getElementById('btnBoth').classList.add('active');
+      wageShareSlider.value = 70;
+      taxSlider.value = 40;
+    }
+
+    calculate();
+  }
+
+  function calculate() {
+    const wageShare = parseFloat(wageShareSlider.value) / 100;
+    const rate = parseFloat(interestSlider.value) / 100;
+    const taxRate = parseFloat(taxSlider.value) / 100;
+    const years = parseInt(yearsSlider.value);
+
+    document.getElementById('wageShareDisplay').textContent = Math.round(wageShare * 100) + '%';
+    document.getElementById('interestDisplay').textContent = (rate * 100).toFixed(1) + '%';
+    document.getElementById('taxDisplay').textContent = Math.round(taxRate * 100) + '%';
+    document.getElementById('yearsDisplay').textContent = years;
+
+    const yearlyValue = VALUE_PER_YEAR;
+    const yearlyCosts = yearlyValue * COST_RATE;
+    const yearlyWages = yearlyValue * wageShare;
+    const yearlyGrossProfit = yearlyValue - yearlyCosts - yearlyWages;
+
+    let ownerWealth = 0;
+    let ownerTotalTax = 0;
+    let workerTotalEarnings = 0;
+    let data = [];
+
+    for (let y = 1; y <= years; y++) {
+      const profit = Math.max(0, yearlyGrossProfit);
+      const tax = profit * taxRate;
+      const netProfit = profit - tax;
+
+      // Owner reinvests and compounds — wealth grows from profits + returns
+      ownerWealth = (ownerWealth * (1 + rate * 0.5)) + netProfit; // conservative reinvestment
+      ownerTotalTax += tax;
+
+      // Workers earn and spend — net savings are minimal
+      const workerYearSavings = yearlyWages * 0.05; // workers can save ~5% of wages
+      workerTotalEarnings += workerYearSavings;
+
+      data.push({
+        year: y,
+        owner: ownerWealth,
+        worker: workerTotalEarnings / 10, // per worker
+      });
+    }
+
+    const finalOwner = data[data.length - 1].owner;
+    const finalWorker = data[data.length - 1].worker;
+    const ratio = finalWorker > 0 ? finalOwner / finalWorker : Infinity;
+
+    document.getElementById('rOwner').textContent = fmt(finalOwner);
+    document.getElementById('rWorkerTotal').textContent = fmt(finalWorker) + ' saved';
+    document.getElementById('rRatio').textContent = ratio >= 10000 ? Math.round(ratio / 1000) + ',000×' : Math.round(ratio) + '×';
+    document.getElementById('rRatioSub').textContent = 'Owner has ' + Math.round(ratio) + '× more than an average worker';
+    document.getElementById('rOwnerTax').textContent = fmt(ownerTotalTax);
+    document.getElementById('rTaxSub').textContent = taxRate > 0
+      ? 'Effective rate: ' + Math.round(taxRate * 100) + '% on profits'
+      : 'No profit taxes applied';
+
+    // Reform messages
+    const msgEl = document.getElementById('reformMessage');
+    if (currentReform === 'none') {
+      msgEl.innerHTML = 'No reforms. The baseline. Watch how fast the owner\'s wealth diverges from the workers\'.';
+    } else if (currentReform === 'tax') {
+      msgEl.innerHTML = 'Taxing profits at 40% <strong>slows</strong> accumulation but doesn\'t stop it. The owner still accumulates because the profit mechanism is intact — they just keep a smaller share each year. After ' + years + ' years, they still have <strong>' + fmt(finalOwner) + '</strong> while each worker saved <strong>' + fmt(finalWorker) + '</strong>.';
+    } else if (currentReform === 'wage') {
+      if (yearlyGrossProfit <= 0) {
+        msgEl.innerHTML = 'At 70% wage share, <strong>profit disappears</strong>. The company can\'t service its debt. In practice, creditors and shareholders would force wages back down, or the company would close. The system resists this reform structurally.';
+      } else {
+        msgEl.innerHTML = 'Higher wages reduce the gap — but profit still accumulates with the owner. After ' + years + ' years: owner has <strong>' + fmt(finalOwner) + '</strong>, each worker saved <strong>' + fmt(finalWorker) + '</strong>. Better, but the direction is the same.';
+      }
+    } else if (currentReform === 'both') {
+      if (yearlyGrossProfit <= 0) {
+        msgEl.innerHTML = 'With both reforms, the company has <strong>no profit and can\'t survive</strong>. Taxes are irrelevant because there\'s nothing to tax. The system cannot accommodate both fair wages and its own debt obligations.';
+      } else {
+        msgEl.innerHTML = 'Both reforms together significantly slow accumulation. After ' + years + ' years: owner <strong>' + fmt(finalOwner) + '</strong>, workers <strong>' + fmt(finalWorker) + '</strong> each. The ratio is lower, but <strong>the direction never reverses.</strong> Wealth still flows upward. Reforms buy time. They don\'t change the architecture.';
+      }
+    }
+
+    renderChart(data);
+  }
+
+  function renderChart(data) {
+    const maxVal = Math.max(...data.map(d => Math.max(d.owner, d.worker)));
+    const chartHeight = 230;
+
+    // Y labels
+    const yLabels = document.getElementById('simYLabels');
+    yLabels.innerHTML = '';
+    const ySteps = 4;
+    for (let i = ySteps; i >= 0; i--) {
+      const val = (maxVal / ySteps) * i;
+      const label = document.createElement('div');
+      label.className = 'sim-y-label';
+      label.textContent = fmt(val);
+      yLabels.appendChild(label);
+    }
+
+    // Bars
+    const barsEl = document.getElementById('simBars');
+    barsEl.innerHTML = '';
+
+    data.forEach(d => {
+      const group = document.createElement('div');
+      group.className = 'sim-bar-group';
+
+      const pair = document.createElement('div');
+      pair.className = 'sim-bar-pair';
+
+      const ownerH = maxVal > 0 ? Math.max(1, (d.owner / maxVal) * chartHeight) : 1;
+      const workerH = maxVal > 0 ? Math.max(1, (d.worker / maxVal) * chartHeight) : 1;
+
+      const ownerBar = document.createElement('div');
+      ownerBar.className = 'sim-bar owner';
+      ownerBar.style.height = ownerH + 'px';
+
+      const workerBar = document.createElement('div');
+      workerBar.className = 'sim-bar workers';
+      workerBar.style.height = workerH + 'px';
+
+      pair.appendChild(ownerBar);
+      pair.appendChild(workerBar);
+
+      const label = document.createElement('div');
+      label.className = 'sim-cycle-label';
+      // Show every Nth label to avoid clutter
+      const totalYears = data.length;
+      const showEvery = totalYears <= 10 ? 1 : totalYears <= 20 ? 2 : totalYears <= 30 ? 5 : 10;
+      label.textContent = (d.year % showEvery === 0 || d.year === 1) ? 'Y' + d.year : '';
+
+      group.appendChild(pair);
+      group.appendChild(label);
+      barsEl.appendChild(group);
+    });
+  }
+
+  wageShareSlider.addEventListener('input', () => { currentReform = 'none'; document.querySelectorAll('.reform-btn').forEach(b => b.classList.remove('active')); document.getElementById('btnNoReform').classList.add('active'); calculate(); });
+  interestSlider.addEventListener('input', calculate);
+  taxSlider.addEventListener('input', () => { currentReform = 'none'; document.querySelectorAll('.reform-btn').forEach(b => b.classList.remove('active')); calculate(); });
+  yearsSlider.addEventListener('input', calculate);
+
+  setReform('none');
+</script>
+
+</body>
+</html>
