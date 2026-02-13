@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 1 — Where Does Money Come From?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #FAFAF7;
+    --text: #1a1a1a;
+    --text-muted: #6b6b6b;
+    --accent: #c23a22;
+    --accent-light: #e8d5d0;
+    --border: #e0ddd8;
+    --card-bg: #FFFFFF;
+    --highlight: #FFF8E7;
+    --dark-bg: #1a1a1a;
+    --dark-text: #f0efe9;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === HEADER === */
+  .header {
+    padding: 3rem 2rem 2rem;
+    max-width: 720px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header .chapter-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .header h1 {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .header .subtitle {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* === NARRATIVE SECTIONS === */
+  .narrative {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .step {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step:nth-child(1) { animation-delay: 0.1s; }
+  .step:nth-child(2) { animation-delay: 0.15s; }
+  .step:nth-child(3) { animation-delay: 0.2s; }
+  .step:nth-child(4) { animation-delay: 0.25s; }
+  .step:nth-child(5) { animation-delay: 0.3s; }
+  .step:nth-child(6) { animation-delay: 0.35s; }
+
+  .step-number {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .step h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .step p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .step p:last-child { margin-bottom: 0; }
+
+  /* === VISUAL BOXES === */
+  .visual-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .visual-box.dark {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    border: none;
+  }
+
+  .visual-box.highlight {
+    background: var(--highlight);
+    border-color: #d4c9a8;
+  }
+
+  .visual-box.accent {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+  }
+
+  /* === MONEY CREATION VISUAL === */
+  .money-creation {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .money-amount {
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0.5rem 0;
+  }
+
+  .money-amount.accent-color { color: var(--accent); }
+
+  .money-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .dark .money-label { color: #999; }
+
+  /* === FLOW DIAGRAM === */
+  .flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+  }
+
+  .flow-entity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 100px;
+  }
+
+  .flow-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .flow-name {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .dark .flow-name { color: #999; }
+
+  .flow-value {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .flow-arrow {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+  }
+
+  .dark .flow-arrow { color: #666; }
+
+  /* === COMPARISON BARS === */
+  .comparison {
+    margin: 1.5rem 0;
+  }
+
+  .comparison-row {
+    margin-bottom: 1.25rem;
+  }
+
+  .comparison-row:last-child { margin-bottom: 0; }
+
+  .comparison-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.4rem;
+  }
+
+  .comparison-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .comparison-value {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .comparison-bar-track {
+    height: 32px;
+    background: #f0efe9;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .dark .comparison-bar-track { background: #2a2a2a; }
+
+  .comparison-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .bar-money { background: #3a7d5c; }
+  .bar-debt { background: var(--accent); }
+  .bar-gap { background: var(--accent); opacity: 0.3; }
+
+  /* === THE GAP CALLOUT === */
+  .gap-callout {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .gap-number {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .dark .gap-number { color: #ff6b54; }
+
+  .gap-text {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  /* === INTERACTIVE SECTION === */
+  .interactive-section {
+    background: var(--dark-bg);
+    color: var(--dark-text);
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+  }
+
+  .interactive-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .interactive-section h2 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .interactive-section .lead {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 2.5rem;
+  }
+
+  /* === SLIDERS === */
+  .control-group {
+    margin-bottom: 2rem;
+  }
+
+  .control-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.6rem;
+  }
+
+  .control-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #ccc;
+  }
+
+  .control-value {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--dark-bg);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: 2px solid var(--dark-bg);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  /* === RESULTS DASHBOARD === */
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .result-card {
+    background: #222;
+    border-radius: 4px;
+    padding: 1.25rem;
+  }
+
+  .result-card.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .result-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 0.4rem;
+  }
+
+  .result-number {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .result-number.red { color: #ff6b54; }
+  .result-number.green { color: #5cb885; }
+  .result-number.white { color: #fff; }
+
+  .result-sub {
+    font-size: 0.75rem;
+    color: #777;
+    margin-top: 0.25rem;
+  }
+
+  /* === CYCLE CHART === */
+  .cycle-chart {
+    margin-top: 2rem;
+    background: #222;
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .chart-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #777;
+  }
+
+  .chart-legend {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.7rem;
+    color: #999;
+  }
+
+  .legend-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .legend-money { background: #5cb885; }
+  .legend-debt { background: #ff6b54; }
+
+  .chart-area {
+    position: relative;
+    height: 220px;
+    border-left: 1px solid #333;
+    border-bottom: 1px solid #333;
+  }
+
+  .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 100%;
+    padding: 0 0.5rem;
+    gap: 2px;
+  }
+
+  .chart-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 60px;
+    height: 100%;
+  }
+
+  .chart-bar-pair {
+    display: flex;
+    gap: 2px;
+    width: 100%;
+    flex: 1;
+    align-items: flex-end;
+  }
+
+  .chart-bar {
+    flex: 1;
+    border-radius: 2px 2px 0 0;
+    min-height: 2px;
+    transition: height 0.5s ease;
+  }
+
+  .chart-bar.money { background: #5cb885; }
+  .chart-bar.debt { background: #ff6b54; }
+
+  .chart-cycle-label {
+    font-size: 0.55rem;
+    color: #666;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  /* === Y-AXIS LABELS === */
+  .chart-y-labels {
+    position: absolute;
+    left: -4px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateX(-100%);
+    padding-right: 6px;
+  }
+
+  .chart-y-label {
+    font-size: 0.55rem;
+    color: #555;
+    text-align: right;
+  }
+
+  /* === TAKEAWAY === */
+  .takeaway {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .takeaway-line {
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 0 auto 1.5rem;
+  }
+
+  .takeaway p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .takeaway strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    html { font-size: 16px; }
+    .header h1 { font-size: 2rem; }
+    .money-amount { font-size: 3rem; }
+    .results-grid { grid-template-columns: 1fr; }
+    .flow-diagram { gap: 0.5rem; }
+    .flow-entity { min-width: 70px; }
+    .flow-value { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="chapter-label">Chapter 1 of 3</div>
+  <h1>Where Does Money Come From?</h1>
+  <div class="subtitle">You work for money. But where does it actually come from?</div>
+</div>
+
+<div class="narrative">
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-number">Step 1</div>
+    <h2>Someone creates the money</h2>
+    <p>Before anyone can earn, spend, or save a single euro, that euro has to be created. In our economy, central banks create the base money supply.</p>
+    <p>Let's start simple. Imagine a small economy where the central bank creates all the money that exists:</p>
+
+    <div class="visual-box dark">
+      <div class="money-creation">
+        <div class="money-label">Total money in existence</div>
+        <div class="money-amount" style="color: #5cb885;">€1,000</div>
+        <div class="money-label">Created by the central bank</div>
+      </div>
+    </div>
+
+    <p>That's it. One thousand euros. Every transaction in this economy — every paycheck, every purchase, every bill — comes from this pool.</p>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-number">Step 2</div>
+    <h2>The bank lends it out</h2>
+    <p>The central bank doesn't hand money directly to people. It flows through commercial banks, which lend it to businesses and individuals. And lending comes with a price: <strong>interest.</strong></p>
+
+    <div class="visual-box">
+      <div class="flow-diagram">
+        <div class="flow-entity">
+          <div class="flow-icon">🏛️</div>
+          <div class="flow-name">Central Bank</div>
+          <div class="flow-value">€1,000</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-entity">
+          <div class="flow-icon">🏦</div>
+          <div class="flow-name">Bank</div>
+          <div class="flow-value" style="color: var(--accent);">+5% interest</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-entity">
+          <div class="flow-icon">🏭🏪🏢</div>
+          <div class="flow-name">Companies</div>
+          <div class="flow-value">€1,000</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Three companies borrow the €1,000 to start their businesses. The bank charges 5% interest. Simple enough. Here's what that looks like:</p>
+
+    <div class="visual-box highlight">
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-size: 0.85rem;">🏭 Company A borrows €500</span>
+          <span style="font-family: var(--serif); font-weight: 600;">owes <span style="color: var(--accent);">€525</span></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-size: 0.85rem;">🏪 Company B borrows €300</span>
+          <span style="font-family: var(--serif); font-weight: 600;">owes <span style="color: var(--accent);">€315</span></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-size: 0.85rem;">🏢 Company C borrows €200</span>
+          <span style="font-family: var(--serif); font-weight: 600;">owes <span style="color: var(--accent);">€210</span></span>
+        </div>
+        <div style="border-top: 1px solid #d4c9a8; padding-top: 0.75rem; margin-top: 0.25rem; display: flex; justify-content: space-between;">
+          <span style="font-size: 0.85rem; font-weight: 600;">Total borrowed</span>
+          <span style="font-family: var(--serif); font-weight: 700;">€1,000</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="font-size: 0.85rem; font-weight: 600;">Total owed</span>
+          <span style="font-family: var(--serif); font-weight: 700; color: var(--accent);">€1,050</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: THE PROBLEM -->
+  <div class="step">
+    <div class="step-number">Step 3</div>
+    <h2>Count the money</h2>
+    <p>Now look at those two numbers. This is the most important part.</p>
+
+    <div class="visual-box dark">
+      <div class="comparison">
+        <div class="comparison-row">
+          <div class="comparison-header">
+            <span class="comparison-label">Money that exists</span>
+            <span class="comparison-value" style="color: #5cb885;">€1,000</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-fill bar-money" style="width: 95.2%;"></div>
+          </div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-header">
+            <span class="comparison-label">Money that is owed</span>
+            <span class="comparison-value" style="color: #ff6b54;">€1,050</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-fill bar-debt" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-callout" style="margin-top: 1rem; border-top: 1px solid #333; padding-top: 1.5rem;">
+        <div class="gap-number">−€50</div>
+        <div class="gap-text">This money doesn't exist. It was never created.</div>
+      </div>
+    </div>
+
+    <p>The central bank created €1,000. The bank demands €1,050 back. Those extra 50 euros <strong>do not exist anywhere in the economy.</strong></p>
+    <p>It's not a trick. It's not hidden. The math simply doesn't add up. More money is owed than was ever created.</p>
+  </div>
+
+  <!-- STEP 4: CONSEQUENCES -->
+  <div class="step">
+    <div class="step-number">Step 4</div>
+    <h2>So what happens?</h2>
+    <p>If €1,050 is owed but only €1,000 exists, there are only two options:</p>
+
+    <div class="visual-box" style="margin-bottom: 1rem;">
+      <div style="margin-bottom: 1.25rem;">
+        <strong style="font-family: var(--serif); font-size: 1.05rem;">Option A: Someone goes bankrupt</strong>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem; margin-bottom: 0;">If all three companies compete for the same €1,000 to repay €1,050, at least one of them <em>mathematically cannot</em> repay its loan. It fails. Workers lose jobs. This isn't bad management — it's arithmetic.</p>
+      </div>
+      <div style="border-top: 1px solid var(--border); padding-top: 1.25rem;">
+        <strong style="font-family: var(--serif); font-size: 1.05rem;">Option B: Create more debt</strong>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem; margin-bottom: 0;">The central bank creates more money. But that money enters the economy as <em>new loans with new interest</em>. The gap doesn't close — it gets bigger.</p>
+      </div>
+    </div>
+
+    <p>In practice, economies choose Option B. And they do it every cycle, every year, forever. <strong>This is why the economy "must grow."</strong></p>
+  </div>
+
+  <!-- STEP 5: WHY THIS MATTERS -->
+  <div class="step">
+    <div class="step-number">Step 5</div>
+    <h2>The growth imperative</h2>
+    <p>Every politician, every economist, every news anchor talks about economic growth as if it were oxygen. It must never stop. But why?</p>
+    <p>Not because of human ambition. Not because of greed. Because of the interest on the debt. The system created more obligations than it created money to fulfill them. To keep it going, you need more money, which means more debt, which means more interest, which means more growth.</p>
+
+    <div class="visual-box accent">
+      <p style="font-family: var(--serif); font-size: 1.15rem; text-align: center; line-height: 1.5; margin: 0;">
+        Growth isn't a goal. It's a debt payment.<br>
+        <span style="opacity: 0.8; font-size: 0.9rem;">The economy doesn't grow because we want more.<br>It grows because it <em>must</em>, or it collapses.</span>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- === INTERACTIVE SECTION === -->
+<div class="interactive-section">
+  <div class="interactive-inner">
+    <h2>See for yourself</h2>
+    <p class="lead">Change the numbers. Watch the gap.</p>
+
+    <!-- Controls -->
+    <div class="control-group">
+      <div class="control-label">
+        <span class="control-name">Money created by central bank</span>
+        <span class="control-value" id="moneyDisplay">€1,000</span>
+      </div>
+      <input type="range" id="moneySlider" min="500" max="10000" step="100" value="1000">
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <span class="control-name">Interest rate</span>
+        <span class="control-value" id="interestDisplay">5%</span>
+      </div>
+      <input type="range" id="interestSlider" min="1" max="25" step="0.5" value="5">
+    </div>
+
+    <div class="control-group">
+      <div class="control-label">
+        <span class="control-name">Number of debt cycles</span>
+        <span class="control-value" id="cyclesDisplay">10</span>
+      </div>
+      <input type="range" id="cyclesSlider" min="1" max="30" step="1" value="10">
+    </div>
+
+    <!-- Results -->
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-label">Money in existence</div>
+        <div class="result-number green" id="resultMoney">€1,000</div>
+        <div class="result-sub">Same each cycle — money is recycled</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Total debt after all cycles</div>
+        <div class="result-number red" id="resultDebt">€1,629</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">The gap</div>
+        <div class="result-number red" id="resultGap">−€629</div>
+        <div class="result-sub">Money owed that doesn't exist</div>
+      </div>
+      <div class="result-card">
+        <div class="result-label">Debt-to-money ratio</div>
+        <div class="result-number white" id="resultRatio">1.63×</div>
+        <div class="result-sub">For every €1 that exists, <span id="ratioInline">€1.63</span> is owed</div>
+      </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="cycle-chart">
+      <div class="chart-header">
+        <div class="chart-title">Money vs. Debt — Each Cycle</div>
+        <div class="chart-legend">
+          <span><span class="legend-dot legend-money"></span> Money</span>
+          <span><span class="legend-dot legend-debt"></span> Debt</span>
+        </div>
+      </div>
+      <div class="chart-area">
+        <div class="chart-y-labels" id="yLabels"></div>
+        <div class="chart-bars" id="chartBars"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TAKEAWAY -->
+<div class="takeaway">
+  <div class="takeaway-line"></div>
+  <p>
+    This isn't a theory. It's the structure of the system. When money is created as debt with interest, <strong>the economy must grow perpetually</strong> — not to improve lives, but to service the debt that created the money in the first place.
+  </p>
+  <p style="margin-top: 1.5rem; font-size: 0.95rem;">
+    The question isn't whether this happens. It's what it requires — from workers, from resources, from the planet.
+  </p>
+  <p style="margin-top: 2rem; font-size: 0.8rem; color: var(--text-muted); font-family: var(--sans); font-style: normal;">
+    Next: <strong>Chapter 2 — Who Makes The Money?</strong>
+  </p>
+</div>
+
+<div class="footer">
+  A simplified model for illustration. Real economies have additional mechanisms (fractional reserve banking, government spending, quantitative easing) that add complexity but do not resolve the fundamental dynamic.
+</div>
+
+<script>
+  const moneySlider = document.getElementById('moneySlider');
+  const interestSlider = document.getElementById('interestSlider');
+  const cyclesSlider = document.getElementById('cyclesSlider');
+
+  const moneyDisplay = document.getElementById('moneyDisplay');
+  const interestDisplay = document.getElementById('interestDisplay');
+  const cyclesDisplay = document.getElementById('cyclesDisplay');
+
+  const resultMoney = document.getElementById('resultMoney');
+  const resultDebt = document.getElementById('resultDebt');
+  const resultGap = document.getElementById('resultGap');
+  const resultRatio = document.getElementById('resultRatio');
+  const ratioInline = document.getElementById('ratioInline');
+
+  const chartBars = document.getElementById('chartBars');
+  const yLabels = document.getElementById('yLabels');
+
+  function formatMoney(n) {
+    if (n >= 1000000) return '€' + (n / 1000000).toFixed(1) + 'M';
+    if (n >= 10000) return '€' + (n / 1000).toFixed(1) + 'K';
+    return '€' + Math.round(n).toLocaleString('en');
+  }
+
+  function calculate() {
+    const baseMoney = parseFloat(moneySlider.value);
+    const rate = parseFloat(interestSlider.value) / 100;
+    const cycles = parseInt(cyclesSlider.value);
+
+    moneyDisplay.textContent = formatMoney(baseMoney);
+    interestDisplay.textContent = (rate * 100).toFixed(1) + '%';
+    cyclesDisplay.textContent = cycles;
+
+    // Each cycle, the full money supply is lent out and must be repaid with interest.
+    // Debt compounds because the interest from previous cycles remains unpaid (it can't all be paid).
+    // Cumulative debt after N cycles of lending baseMoney at rate:
+    // Each cycle adds baseMoney * (1 + rate) in obligations, but only baseMoney in money.
+    // So cumulative debt = baseMoney * (1 + rate)^cycles (compound)
+    // But let's model it more concretely:
+    // Each cycle: lend baseMoney, owe baseMoney*(1+rate).
+    // The interest portion (baseMoney*rate) can never be fully repaid, so it accumulates.
+
+    let cycleData = [];
+    let cumulativeDebt = 0;
+
+    for (let i = 1; i <= cycles; i++) {
+      // Each cycle, the existing money (baseMoney) is lent out again.
+      // New debt from this cycle = baseMoney * rate (the interest portion that can't be repaid from the pool)
+      // But actually, let's show compound growth of outstanding obligations.
+      // Total debt after cycle i = baseMoney * ((1+rate)^i)
+      // This represents: each cycle, the unpayable interest rolls over and itself accrues interest.
+      cumulativeDebt = baseMoney * Math.pow(1 + rate, i);
+      cycleData.push({
+        cycle: i,
+        money: baseMoney,
+        debt: cumulativeDebt
+      });
+    }
+
+    const finalDebt = cycleData[cycleData.length - 1].debt;
+    const gap = baseMoney - finalDebt;
+    const ratio = finalDebt / baseMoney;
+
+    resultMoney.textContent = formatMoney(baseMoney);
+    resultDebt.textContent = formatMoney(finalDebt);
+    resultGap.textContent = '−' + formatMoney(Math.abs(gap));
+    resultRatio.textContent = ratio.toFixed(2) + '×';
+    ratioInline.textContent = '€' + ratio.toFixed(2);
+
+    renderChart(cycleData);
+  }
+
+  function renderChart(data) {
+    const maxVal = Math.max(...data.map(d => d.debt));
+    const chartHeight = 200; // usable pixel height for bars
+
+    // Y axis labels
+    yLabels.innerHTML = '';
+    const ySteps = 4;
+    for (let i = ySteps; i >= 0; i--) {
+      const val = (maxVal / ySteps) * i;
+      const label = document.createElement('div');
+      label.className = 'chart-y-label';
+      label.textContent = formatMoney(val);
+      yLabels.appendChild(label);
+    }
+
+    // Bars — use pixel heights, not percentages
+    chartBars.innerHTML = '';
+    data.forEach(d => {
+      const group = document.createElement('div');
+      group.className = 'chart-bar-group';
+
+      const pair = document.createElement('div');
+      pair.className = 'chart-bar-pair';
+
+      const moneyH = Math.max(2, (d.money / maxVal) * chartHeight);
+      const debtH = Math.max(2, (d.debt / maxVal) * chartHeight);
+
+      const moneyBar = document.createElement('div');
+      moneyBar.className = 'chart-bar money';
+      moneyBar.style.height = moneyH + 'px';
+
+      const debtBar = document.createElement('div');
+      debtBar.className = 'chart-bar debt';
+      debtBar.style.height = debtH + 'px';
+
+      pair.appendChild(moneyBar);
+      pair.appendChild(debtBar);
+
+      const label = document.createElement('div');
+      label.className = 'chart-cycle-label';
+      label.textContent = d.cycle;
+
+      group.appendChild(pair);
+      group.appendChild(label);
+      chartBars.appendChild(group);
+    });
+  }
+
+  moneySlider.addEventListener('input', calculate);
+  interestSlider.addEventListener('input', calculate);
+  cyclesSlider.addEventListener('input', calculate);
+
+  // Initial render
+  calculate();
+</script>
+
+</body>
+</html>
