@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chapter 2 — Who Makes The Money?</title>
+<title>Chapter 1 — Where Does Money Come From?</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -18,13 +18,12 @@
     --highlight: #FFF8E7;
     --dark-bg: #1a1a1a;
     --dark-text: #f0efe9;
-    --green: #3a7d5c;
-    --green-bright: #5cb885;
     --serif: 'Source Serif 4', Georgia, serif;
     --sans: 'Inter', -apple-system, sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   html { font-size: 18px; scroll-behavior: smooth; }
 
   body {
@@ -71,7 +70,7 @@
     font-style: italic;
   }
 
-  /* === NARRATIVE === */
+  /* === NARRATIVE SECTIONS === */
   .narrative {
     max-width: 720px;
     margin: 0 auto;
@@ -151,152 +150,147 @@
     border: none;
   }
 
-  /* === WORKER GRID === */
-  .worker-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    justify-content: center;
-    margin: 1rem 0;
-  }
-
-  .worker-icon {
-    font-size: 1.6rem;
-    line-height: 1;
-    transition: opacity 0.3s;
-  }
-
-  .worker-label {
+  /* === MONEY CREATION VISUAL === */
+  .money-creation {
     text-align: center;
+    padding: 2rem 0;
+  }
+
+  .money-amount {
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0.5rem 0;
+  }
+
+  .money-amount.accent-color { color: var(--accent); }
+
+  .money-label {
     font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-muted);
-    margin-top: 0.75rem;
   }
 
-  .dark .worker-label { color: #999; }
+  .dark .money-label { color: #999; }
 
-  /* === VALUE WATERFALL === */
-  .waterfall {
+  /* === FLOW DIAGRAM === */
+  .flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
     margin: 1.5rem 0;
   }
 
-  .waterfall-row {
+  .flow-entity {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 0.5rem;
-    gap: 0.75rem;
+    gap: 0.4rem;
+    min-width: 100px;
   }
 
-  .waterfall-label {
+  .flow-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .flow-name {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .dark .flow-name { color: #999; }
+
+  .flow-value {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .flow-arrow {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+  }
+
+  .dark .flow-arrow { color: #666; }
+
+  /* === COMPARISON BARS === */
+  .comparison {
+    margin: 1.5rem 0;
+  }
+
+  .comparison-row {
+    margin-bottom: 1.25rem;
+  }
+
+  .comparison-row:last-child { margin-bottom: 0; }
+
+  .comparison-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.4rem;
+  }
+
+  .comparison-label {
     font-size: 0.8rem;
     font-weight: 500;
-    width: 140px;
-    flex-shrink: 0;
-    text-align: right;
   }
 
-  .waterfall-bar-track {
-    flex: 1;
-    height: 36px;
+  .comparison-value {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .comparison-bar-track {
+    height: 32px;
     background: #f0efe9;
     border-radius: 3px;
     overflow: hidden;
     position: relative;
   }
 
-  .dark .waterfall-bar-track { background: #2a2a2a; }
+  .dark .comparison-bar-track { background: #2a2a2a; }
 
-  .waterfall-bar {
+  .comparison-bar-fill {
     height: 100%;
     border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 0.75rem;
-    font-family: var(--serif);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #fff;
     transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .bar-value { background: #4a8c6a; }
-  .bar-wages { background: var(--green); }
-  .bar-materials { background: #8a7a5a; }
-  .bar-profit { background: var(--accent); }
+  .bar-money { background: #3a7d5c; }
+  .bar-debt { background: var(--accent); }
+  .bar-gap { background: var(--accent); opacity: 0.3; }
 
-  /* === SPLIT DIAGRAM === */
-  .split-diagram {
-    display: flex;
-    gap: 2px;
-    height: 60px;
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 1rem 0;
-  }
-
-  .split-segment {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    transition: flex 0.6s ease;
-  }
-
-  .split-segment-label {
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    opacity: 0.9;
-  }
-
-  .split-segment-value {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 1rem;
-  }
-
-  /* === EQUATION === */
-  .equation {
-    text-align: center;
-    padding: 1.5rem 0;
-  }
-
-  .equation-line {
-    font-family: var(--serif);
-    font-size: 1.4rem;
-    font-weight: 600;
-    line-height: 2;
-  }
-
-  .eq-green { color: var(--green); }
-  .eq-brown { color: #8a7a5a; }
-  .eq-red { color: var(--accent); }
-  .eq-muted { color: var(--text-muted); font-weight: 400; font-size: 1rem; }
-
-  /* === CALLOUT === */
-  .callout-center {
+  /* === THE GAP CALLOUT === */
+  .gap-callout {
     text-align: center;
     padding: 1.5rem;
   }
 
-  .callout-big {
+  .gap-number {
     font-family: var(--serif);
     font-size: 3rem;
     font-weight: 700;
+    color: var(--accent);
   }
 
-  .callout-sub {
+  .dark .gap-number { color: #ff6b54; }
+
+  .gap-text {
     font-size: 0.85rem;
     color: var(--text-muted);
     margin-top: 0.25rem;
   }
-
-  .dark .callout-sub { color: #999; }
 
   /* === INTERACTIVE SECTION === */
   .interactive-section {
@@ -325,7 +319,9 @@
   }
 
   /* === SLIDERS === */
-  .control-group { margin-bottom: 2rem; }
+  .control-group {
+    margin-bottom: 2rem;
+  }
 
   .control-label {
     display: flex;
@@ -378,7 +374,7 @@
     box-shadow: 0 0 0 2px var(--accent);
   }
 
-  /* === RESULTS === */
+  /* === RESULTS DASHBOARD === */
   .results-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -392,7 +388,9 @@
     padding: 1.25rem;
   }
 
-  .result-card.full-width { grid-column: 1 / -1; }
+  .result-card.full-width {
+    grid-column: 1 / -1;
+  }
 
   .result-label {
     font-size: 0.65rem;
@@ -412,7 +410,6 @@
   .result-number.red { color: #ff6b54; }
   .result-number.green { color: #5cb885; }
   .result-number.white { color: #fff; }
-  .result-number.yellow { color: #e8c547; }
 
   .result-sub {
     font-size: 0.75rem;
@@ -420,102 +417,116 @@
     margin-top: 0.25rem;
   }
 
-  /* === LIVE SPLIT BAR === */
-  .live-split-container {
+  /* === CYCLE CHART === */
+  .cycle-chart {
     margin-top: 2rem;
     background: #222;
     border-radius: 4px;
     padding: 1.5rem;
   }
 
-  .live-split-title {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #777;
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1rem;
   }
 
-  .live-split {
-    display: flex;
-    height: 56px;
-    border-radius: 4px;
-    overflow: hidden;
-    gap: 2px;
-  }
-
-  .live-seg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    transition: flex 0.5s ease;
-    min-width: 0;
-    overflow: hidden;
-  }
-
-  .live-seg-label {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    opacity: 0.85;
-    white-space: nowrap;
-  }
-
-  .live-seg-value {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 0.95rem;
-    white-space: nowrap;
-  }
-
-  .seg-wages { background: var(--green); color: #fff; }
-  .seg-materials { background: #8a7a5a; color: #fff; }
-  .seg-profit { background: var(--accent); color: #fff; }
-
-  /* === LOAN STATUS === */
-  .loan-status {
-    margin-top: 1rem;
-    background: #222;
-    border-radius: 4px;
-    padding: 1.5rem;
-  }
-
-  .loan-status-title {
+  .chart-title {
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #777;
-    margin-bottom: 0.75rem;
   }
 
-  .loan-bar-track {
-    height: 12px;
-    background: #333;
-    border-radius: 6px;
-    overflow: hidden;
+  .chart-legend {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.7rem;
+    color: #999;
+  }
+
+  .legend-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .legend-money { background: #5cb885; }
+  .legend-debt { background: #ff6b54; }
+
+  .chart-area {
     position: relative;
-    margin-bottom: 0.5rem;
+    height: 220px;
+    border-left: 1px solid #333;
+    border-bottom: 1px solid #333;
   }
 
-  .loan-bar-fill {
+  .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
     height: 100%;
-    border-radius: 6px;
-    transition: width 0.5s ease, background 0.3s;
+    padding: 0 0.5rem;
+    gap: 2px;
   }
 
-  .loan-status-text {
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-top: 0.25rem;
+  .chart-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 60px;
+    height: 100%;
   }
 
-  .status-ok { color: var(--green-bright); }
-  .status-warn { color: #e8c547; }
-  .status-fail { color: #ff6b54; }
+  .chart-bar-pair {
+    display: flex;
+    gap: 2px;
+    width: 100%;
+    flex: 1;
+    align-items: flex-end;
+  }
+
+  .chart-bar {
+    flex: 1;
+    border-radius: 2px 2px 0 0;
+    min-height: 2px;
+    transition: height 0.5s ease;
+  }
+
+  .chart-bar.money { background: #5cb885; }
+  .chart-bar.debt { background: #ff6b54; }
+
+  .chart-cycle-label {
+    font-size: 0.55rem;
+    color: #666;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  /* === Y-AXIS LABELS === */
+  .chart-y-labels {
+    position: absolute;
+    left: -4px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateX(-100%);
+    padding-right: 6px;
+  }
+
+  .chart-y-label {
+    font-size: 0.55rem;
+    color: #555;
+    text-align: right;
+  }
 
   /* === TAKEAWAY === */
   .takeaway {
@@ -546,6 +557,40 @@
     font-weight: 600;
   }
 
+  /* === CHAPTER NAV === */
+  .chapter-nav {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chapter-nav a {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .chapter-nav a:hover { opacity: 0.7; }
+
+  .chapter-nav .page-indicator {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  .chapter-nav .nav-placeholder {
+    min-width: 80px;
+  }
+
+  /* === FOOTER === */
   .footer {
     text-align: center;
     padding: 2rem;
@@ -556,170 +601,171 @@
     margin: 0 auto;
   }
 
+  /* === RESPONSIVE === */
   @media (max-width: 600px) {
     html { font-size: 16px; }
     .header h1 { font-size: 2rem; }
+    .money-amount { font-size: 3rem; }
     .results-grid { grid-template-columns: 1fr; }
-    .waterfall-label { width: 100px; font-size: 0.7rem; }
-    .equation-line { font-size: 1.1rem; }
-    .callout-big { font-size: 2.2rem; }
+    .flow-diagram { gap: 0.5rem; }
+    .flow-entity { min-width: 70px; }
+    .flow-value { font-size: 1rem; }
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="chapter-label">Chapter 2 of 3</div>
-  <h1>Who Makes The Money?</h1>
-  <div class="subtitle">Companies make money. But who actually does the work?</div>
+  <div class="chapter-label">Chapter 1 of 3</div>
+  <h1>Where Does Money Come From?</h1>
+  <div class="subtitle">You work for money. But where does it actually come from?</div>
 </div>
 
 <div class="narrative">
 
-  <!-- STEP 1: THE WORKERS -->
+  <!-- STEP 1 -->
   <div class="step">
     <div class="step-number">Step 1</div>
-    <h2>Meet the company</h2>
-    <p>Let's look at one company. It has an owner and ten workers. The workers make things, serve customers, write code, drive trucks — they do the actual work that produces value.</p>
+    <h2>Someone creates the money</h2>
+    <p>Before anyone can earn, spend, or save a single euro, that euro has to be created. In our economy, central banks create the base money supply.</p>
+    <p>Let's start simple. Imagine a small economy where the central bank creates all the money that exists:</p>
 
     <div class="visual-box dark">
-      <div style="text-align: center;">
-        <div style="margin-bottom: 1.5rem;">
-          <span style="font-size: 2.2rem;">🤵</span>
-          <div class="worker-label">Owner</div>
-        </div>
-        <div class="worker-grid">
-          <span class="worker-icon">👷</span>
-          <span class="worker-icon">👷</span>
-          <span class="worker-icon">👷</span>
-          <span class="worker-icon">👷</span>
-          <span class="worker-icon">👷</span>
-          <span class="worker-icon">👷</span>
-          <span class="worker-icon">👷</span>
-          <span class="worker-icon">👷</span>
-          <span class="worker-icon">👷</span>
-          <span class="worker-icon">👷</span>
-        </div>
-        <div class="worker-label">10 Workers</div>
+      <div class="money-creation">
+        <div class="money-label">Total money in existence</div>
+        <div class="money-amount" style="color: #5cb885;">€1,000</div>
+        <div class="money-label">Created by the central bank</div>
       </div>
     </div>
 
-    <p>Each worker produces €100 of value per day. Together, that's €1,000 of value — goods made, services delivered, work done.</p>
+    <p>That's it. One thousand euros. Every transaction in this economy — every paycheck, every purchase, every bill — comes from this pool.</p>
   </div>
 
-  <!-- STEP 2: THE SPLIT -->
+  <!-- STEP 2 -->
   <div class="step">
     <div class="step-number">Step 2</div>
-    <h2>Where does the €1,000 go?</h2>
-    <p>The company brought in €1,000 of value today. Now it gets divided up:</p>
+    <h2>The bank lends it out</h2>
+    <p>The central bank doesn't hand money directly to people. It flows through commercial banks, which lend it to businesses and individuals. And lending comes with a price: <strong>interest.</strong></p>
 
     <div class="visual-box">
-      <div class="waterfall">
-        <div class="waterfall-row">
-          <div class="waterfall-label">Value produced</div>
-          <div class="waterfall-bar-track">
-            <div class="waterfall-bar bar-value" style="width: 100%;">€1,000</div>
-          </div>
+      <div class="flow-diagram">
+        <div class="flow-entity">
+          <div class="flow-icon">🏛️</div>
+          <div class="flow-name">Central Bank</div>
+          <div class="flow-value">€1,000</div>
         </div>
-        <div class="waterfall-row">
-          <div class="waterfall-label">→ Materials & costs</div>
-          <div class="waterfall-bar-track">
-            <div class="waterfall-bar bar-materials" style="width: 20%;">€200</div>
-          </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-entity">
+          <div class="flow-icon">🏦</div>
+          <div class="flow-name">Bank</div>
+          <div class="flow-value" style="color: var(--accent);">+5% interest</div>
         </div>
-        <div class="waterfall-row">
-          <div class="waterfall-label">→ Worker wages</div>
-          <div class="waterfall-bar-track">
-            <div class="waterfall-bar bar-wages" style="width: 40%;">€400</div>
-          </div>
-        </div>
-        <div class="waterfall-row">
-          <div class="waterfall-label">→ Profit (owner)</div>
-          <div class="waterfall-bar-track">
-            <div class="waterfall-bar bar-profit" style="width: 40%;">€400</div>
-          </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-entity">
+          <div class="flow-icon">🏭🏪🏢</div>
+          <div class="flow-name">Companies</div>
+          <div class="flow-value">€1,000</div>
         </div>
       </div>
     </div>
 
-    <p>The workers produced all €1,000 of value. They received €400. The owner — who did not produce the goods — received €400.</p>
-    <p>The split as a fraction of value produced:</p>
-
-    <div class="visual-box" style="padding: 1.25rem 2rem;">
-      <div class="split-diagram">
-        <div class="split-segment seg-wages" style="flex: 4;">
-          <div class="split-segment-label">Wages</div>
-          <div class="split-segment-value">40%</div>
-        </div>
-        <div class="split-segment seg-materials" style="flex: 2;">
-          <div class="split-segment-label">Costs</div>
-          <div class="split-segment-value">20%</div>
-        </div>
-        <div class="split-segment seg-profit" style="flex: 4;">
-          <div class="split-segment-label">Profit</div>
-          <div class="split-segment-value">40%</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- STEP 3: THE QUESTION -->
-  <div class="step">
-    <div class="step-number">Step 3</div>
-    <h2>Read that again</h2>
-    <p>Ten people did all the work. One person collected the same amount as all ten combined.</p>
-
-    <div class="visual-box dark">
-      <div style="display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 1.5rem;">
-        <div>
-          <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">👷 × 10</div>
-          <div class="callout-big" style="color: var(--green-bright);">€400</div>
-          <div class="callout-sub">€40 each</div>
-          <div class="callout-sub">Did all the work</div>
-        </div>
-        <div style="display: flex; align-items: center; font-size: 1.5rem; color: #555;">vs</div>
-        <div>
-          <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🤵 × 1</div>
-          <div class="callout-big" style="color: #ff6b54;">€400</div>
-          <div class="callout-sub">€400 for one person</div>
-          <div class="callout-sub">Owns the company</div>
-        </div>
-      </div>
-    </div>
-
-    <p>This isn't a broken company. This isn't a greedy boss. <strong>This is how the model works.</strong> The difference between what workers produce and what they're paid is, by definition, profit.</p>
-  </div>
-
-  <!-- STEP 4: THE EQUATION -->
-  <div class="step">
-    <div class="step-number">Step 4</div>
-    <h2>The equation that runs everything</h2>
+    <p>Three companies borrow the €1,000 to start their businesses. The bank charges 5% interest. Simple enough. Here's what that looks like:</p>
 
     <div class="visual-box highlight">
-      <div class="equation">
-        <div class="equation-line">
-          <span class="eq-red">Profit</span> <span class="eq-muted">=</span> Value produced <span class="eq-muted">−</span> <span class="eq-green">Wages</span> <span class="eq-muted">−</span> <span class="eq-brown">Costs</span>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-size: 0.85rem;">🏭 Company A borrows €500</span>
+          <span style="font-family: var(--serif); font-weight: 600;">owes <span style="color: var(--accent);">€525</span></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-size: 0.85rem;">🏪 Company B borrows €300</span>
+          <span style="font-family: var(--serif); font-weight: 600;">owes <span style="color: var(--accent);">€315</span></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-size: 0.85rem;">🏢 Company C borrows €200</span>
+          <span style="font-family: var(--serif); font-weight: 600;">owes <span style="color: var(--accent);">€210</span></span>
+        </div>
+        <div style="border-top: 1px solid #d4c9a8; padding-top: 0.75rem; margin-top: 0.25rem; display: flex; justify-content: space-between;">
+          <span style="font-size: 0.85rem; font-weight: 600;">Total borrowed</span>
+          <span style="font-family: var(--serif); font-weight: 700;">€1,000</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="font-size: 0.85rem; font-weight: 600;">Total owed</span>
+          <span style="font-family: var(--serif); font-weight: 700; color: var(--accent);">€1,050</span>
         </div>
       </div>
     </div>
-
-    <p>For profit to exist, workers <em>must</em> be paid less than the value they create. If they were paid the full value, profit would be zero. No profit means the company can't repay its loans — remember Chapter 1.</p>
-    <p>This is not about fairness or greed. It's structural. The gap between what you produce and what you earn is not a flaw in the system. <strong>It is the system.</strong></p>
   </div>
 
-  <!-- STEP 5: THE CONNECTION -->
+  <!-- STEP 3: THE PROBLEM -->
+  <div class="step">
+    <div class="step-number">Step 3</div>
+    <h2>Count the money</h2>
+    <p>Now look at those two numbers. This is the most important part.</p>
+
+    <div class="visual-box dark">
+      <div class="comparison">
+        <div class="comparison-row">
+          <div class="comparison-header">
+            <span class="comparison-label">Money that exists</span>
+            <span class="comparison-value" style="color: #5cb885;">€1,000</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-fill bar-money" style="width: 95.2%;"></div>
+          </div>
+        </div>
+        <div class="comparison-row">
+          <div class="comparison-header">
+            <span class="comparison-label">Money that is owed</span>
+            <span class="comparison-value" style="color: #ff6b54;">€1,050</span>
+          </div>
+          <div class="comparison-bar-track">
+            <div class="comparison-bar-fill bar-debt" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap-callout" style="margin-top: 1rem; border-top: 1px solid #333; padding-top: 1.5rem;">
+        <div class="gap-number">−€50</div>
+        <div class="gap-text">This money doesn't exist. It was never created.</div>
+      </div>
+    </div>
+
+    <p>The central bank created €1,000. The bank demands €1,050 back. Those extra 50 euros <strong>do not exist anywhere in the economy.</strong></p>
+    <p>It's not a trick. It's not hidden. The math simply doesn't add up. More money is owed than was ever created.</p>
+  </div>
+
+  <!-- STEP 4: CONSEQUENCES -->
+  <div class="step">
+    <div class="step-number">Step 4</div>
+    <h2>So what happens?</h2>
+    <p>If €1,050 is owed but only €1,000 exists, there are only two options:</p>
+
+    <div class="visual-box" style="margin-bottom: 1rem;">
+      <div style="margin-bottom: 1.25rem;">
+        <strong style="font-family: var(--serif); font-size: 1.05rem;">Option A: Someone goes bankrupt</strong>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem; margin-bottom: 0;">If all three companies compete for the same €1,000 to repay €1,050, at least one of them <em>mathematically cannot</em> repay its loan. It fails. Workers lose jobs. This isn't bad management — it's arithmetic.</p>
+      </div>
+      <div style="border-top: 1px solid var(--border); padding-top: 1.25rem;">
+        <strong style="font-family: var(--serif); font-size: 1.05rem;">Option B: Create more debt</strong>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.4rem; margin-bottom: 0;">The central bank creates more money. But that money enters the economy as <em>new loans with new interest</em>. The gap doesn't close — it gets bigger.</p>
+      </div>
+    </div>
+
+    <p>In practice, economies choose Option B. And they do it every cycle, every year, forever. <strong>This is why the economy "must grow."</strong></p>
+  </div>
+
+  <!-- STEP 5: WHY THIS MATTERS -->
   <div class="step">
     <div class="step-number">Step 5</div>
-    <h2>Why this connects to debt</h2>
-    <p>In Chapter 1, we saw that more money is owed than exists. Someone has to generate the extra money to cover the interest. Where does it come from?</p>
-    <p>It comes from here. From the gap between what workers produce and what they're paid. Profit services debt. And since debt always grows (because of interest), profit must always grow too. Which means the gap must widen — or new workers must be added, or they must produce more for the same pay.</p>
+    <h2>The growth imperative</h2>
+    <p>Every politician, every economist, every news anchor talks about economic growth as if it were oxygen. It must never stop. But why?</p>
+    <p>Not because of human ambition. Not because of greed. Because of the interest on the debt. The system created more obligations than it created money to fulfill them. To keep it going, you need more money, which means more debt, which means more interest, which means more growth.</p>
 
     <div class="visual-box accent">
-      <p style="font-family: var(--serif); font-size: 1.1rem; text-align: center; line-height: 1.6; margin: 0;">
-        Debt demands interest. Interest demands profit.<br>
-        Profit demands a gap between work and wages.<br>
-        <span style="opacity: 0.85; font-size: 0.95rem;">The system doesn't exploit workers because bosses are cruel.<br>
-        It exploits workers because the math requires it.</span>
+      <p style="font-family: var(--serif); font-size: 1.15rem; text-align: center; line-height: 1.5; margin: 0;">
+        Growth isn't a goal. It's a debt payment.<br>
+        <span style="opacity: 0.8; font-size: 0.9rem;">The economy doesn't grow because we want more.<br>It grows because it <em>must</em>, or it collapses.</span>
       </p>
     </div>
   </div>
@@ -729,99 +775,70 @@
 <!-- === INTERACTIVE SECTION === -->
 <div class="interactive-section">
   <div class="interactive-inner">
-    <h2>Move the sliders</h2>
-    <p class="lead">Pay workers more. See what happens to profits — and to the company's ability to survive.</p>
+    <h2>See for yourself</h2>
+    <p class="lead">Change the numbers. Watch the gap.</p>
 
+    <!-- Controls -->
     <div class="control-group">
       <div class="control-label">
-        <span class="control-name">Value each worker produces per day</span>
-        <span class="control-value" id="valueDisplay">€100</span>
+        <span class="control-name">Money created by central bank</span>
+        <span class="control-value" id="moneyDisplay">€1,000</span>
       </div>
-      <input type="range" id="valueSlider" min="50" max="200" step="5" value="100">
+      <input type="range" id="moneySlider" min="500" max="10000" step="100" value="1000">
     </div>
 
     <div class="control-group">
       <div class="control-label">
-        <span class="control-name">Wage per worker per day</span>
-        <span class="control-value" id="wageDisplay">€40</span>
-      </div>
-      <input type="range" id="wageSlider" min="10" max="200" step="5" value="40">
-    </div>
-
-    <div class="control-group">
-      <div class="control-label">
-        <span class="control-name">Material & operating costs</span>
-        <span class="control-value" id="costDisplay">€200</span>
-      </div>
-      <input type="range" id="costSlider" min="50" max="500" step="10" value="200">
-    </div>
-
-    <div class="control-group">
-      <div class="control-label">
-        <span class="control-name">Loan amount (from Chapter 1)</span>
-        <span class="control-value" id="loanDisplay">€500</span>
-      </div>
-      <input type="range" id="loanSlider" min="100" max="2000" step="50" value="500">
-    </div>
-
-    <div class="control-group">
-      <div class="control-label">
-        <span class="control-name">Interest rate on loan</span>
+        <span class="control-name">Interest rate</span>
         <span class="control-value" id="interestDisplay">5%</span>
       </div>
       <input type="range" id="interestSlider" min="1" max="25" step="0.5" value="5">
     </div>
 
-    <!-- LIVE SPLIT BAR -->
-    <div class="live-split-container">
-      <div class="live-split-title">Where each €1 of value goes</div>
-      <div class="live-split" id="liveSplit"></div>
+    <div class="control-group">
+      <div class="control-label">
+        <span class="control-name">Number of debt cycles</span>
+        <span class="control-value" id="cyclesDisplay">10</span>
+      </div>
+      <input type="range" id="cyclesSlider" min="1" max="30" step="1" value="10">
     </div>
 
-    <!-- RESULTS -->
+    <!-- Results -->
     <div class="results-grid">
       <div class="result-card">
-        <div class="result-label">Total value produced</div>
-        <div class="result-number white" id="rValue">€1,000</div>
-        <div class="result-sub">10 workers × <span id="rPerWorker">€100</span></div>
+        <div class="result-label">Money in existence</div>
+        <div class="result-number green" id="resultMoney">€1,000</div>
+        <div class="result-sub">Same each cycle — money is recycled</div>
       </div>
       <div class="result-card">
-        <div class="result-label">Total wages paid</div>
-        <div class="result-number green" id="rWages">€400</div>
-        <div class="result-sub" id="rWagePct">40% of value</div>
+        <div class="result-label">Total debt after all cycles</div>
+        <div class="result-number red" id="resultDebt">€1,629</div>
       </div>
       <div class="result-card">
-        <div class="result-label">Profit (owner keeps)</div>
-        <div class="result-number" id="rProfit">€400</div>
-        <div class="result-sub" id="rProfitPct">40% of value</div>
+        <div class="result-label">The gap</div>
+        <div class="result-number red" id="resultGap">−€629</div>
+        <div class="result-sub">Money owed that doesn't exist</div>
       </div>
       <div class="result-card">
-        <div class="result-label">Owner earns per worker</div>
-        <div class="result-number" id="rPerWorkerProfit">€40</div>
-        <div class="result-sub" id="rMultiple">10× a single worker's wage</div>
+        <div class="result-label">Debt-to-money ratio</div>
+        <div class="result-number white" id="resultRatio">1.63×</div>
+        <div class="result-sub">For every €1 that exists, <span id="ratioInline">€1.63</span> is owed</div>
       </div>
     </div>
 
-    <!-- LOAN STATUS -->
-    <div class="loan-status">
-      <div class="loan-status-title">Can the company repay its loan?</div>
-      <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.4rem;">
-        <span style="color: #999;">Profit per year (≈250 working days)</span>
-        <span style="color: #fff; font-family: var(--serif); font-weight: 600;" id="loanProfitYear">€100,000</span>
+    <!-- Chart -->
+    <div class="cycle-chart">
+      <div class="chart-header">
+        <div class="chart-title">Money vs. Debt — Each Cycle</div>
+        <div class="chart-legend">
+          <span><span class="legend-dot legend-money"></span> Money</span>
+          <span><span class="legend-dot legend-debt"></span> Debt</span>
+        </div>
       </div>
-      <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.75rem;">
-        <span style="color: #999;">Loan + interest owed</span>
-        <span style="color: #ff6b54; font-family: var(--serif); font-weight: 600;" id="loanOwed">€525</span>
+      <div class="chart-area">
+        <div class="chart-y-labels" id="yLabels"></div>
+        <div class="chart-bars" id="chartBars"></div>
       </div>
-      <div class="loan-bar-track">
-        <div class="loan-bar-fill" id="loanBar" style="width: 100%; background: var(--green-bright);"></div>
-      </div>
-      <div class="loan-status-text" id="loanText">✓ Loan can be repaid</div>
-    </div>
-
-    <!-- TENSION MESSAGE -->
-    <div id="tensionMessage" style="margin-top: 1.5rem; padding: 1.25rem; background: #222; border-radius: 4px; display: none;">
-      <p style="font-family: var(--serif); font-size: 1rem; line-height: 1.6; color: #ccc; margin: 0;"></p>
     </div>
 
   </div>
@@ -831,182 +848,148 @@
 <div class="takeaway">
   <div class="takeaway-line"></div>
   <p>
-    Profit is not a reward for cleverness or risk. It is the <strong>difference between the value workers create and the wages they receive.</strong> This gap isn't optional — it's what keeps the entire system running.
+    This isn't a theory. It's the structure of the system. When money is created as debt with interest, <strong>the economy must grow perpetually</strong> — not to improve lives, but to service the debt that created the money in the first place.
   </p>
   <p style="margin-top: 1.5rem; font-size: 0.95rem;">
-    The debt from Chapter 1 demands profit. Profit demands underpaying labor. This is not a policy choice. It's the architecture.
+    The question isn't whether this happens. It's what it requires — from workers, from resources, from the planet.
   </p>
-  <p style="margin-top: 2rem; font-size: 0.8rem; color: var(--text-muted); font-family: var(--sans); font-style: normal;">
-    Next: <strong>Chapter 3 — Where Does The Money Go?</strong>
-  </p>
+</div>
+
+<div class="chapter-nav">
+  <div class="nav-placeholder"></div>
+  <span class="page-indicator">1 / 3</span>
+  <a href="chapter2.html">Chapter 2 &rarr;</a>
 </div>
 
 <div class="footer">
-  A simplified model. Real wages are influenced by labor markets, regulation, bargaining power, and other factors. The structural relationship between profit and unpaid labor holds across all of them.
+  A simplified model for illustration. Real economies have additional mechanisms (fractional reserve banking, government spending, quantitative easing) that add complexity but do not resolve the fundamental dynamic.
 </div>
 
 <script>
-  const valueSlider = document.getElementById('valueSlider');
-  const wageSlider = document.getElementById('wageSlider');
-  const costSlider = document.getElementById('costSlider');
-  const loanSlider = document.getElementById('loanSlider');
+  const moneySlider = document.getElementById('moneySlider');
   const interestSlider = document.getElementById('interestSlider');
+  const cyclesSlider = document.getElementById('cyclesSlider');
 
-  const WORKERS = 10;
-  const WORK_DAYS = 250;
+  const moneyDisplay = document.getElementById('moneyDisplay');
+  const interestDisplay = document.getElementById('interestDisplay');
+  const cyclesDisplay = document.getElementById('cyclesDisplay');
 
-  function fmt(n) {
-    if (Math.abs(n) >= 1000000) return '€' + (n / 1000000).toFixed(1) + 'M';
-    if (Math.abs(n) >= 10000) return '€' + (n / 1000).toFixed(1) + 'K';
+  const resultMoney = document.getElementById('resultMoney');
+  const resultDebt = document.getElementById('resultDebt');
+  const resultGap = document.getElementById('resultGap');
+  const resultRatio = document.getElementById('resultRatio');
+  const ratioInline = document.getElementById('ratioInline');
+
+  const chartBars = document.getElementById('chartBars');
+  const yLabels = document.getElementById('yLabels');
+
+  function formatMoney(n) {
+    if (n >= 1000000) return '€' + (n / 1000000).toFixed(1) + 'M';
+    if (n >= 10000) return '€' + (n / 1000).toFixed(1) + 'K';
     return '€' + Math.round(n).toLocaleString('en');
   }
 
   function calculate() {
-    const valuePerWorker = parseFloat(valueSlider.value);
-    const wagePerWorker = parseFloat(wageSlider.value);
-    const costs = parseFloat(costSlider.value);
-    const loan = parseFloat(loanSlider.value);
+    const baseMoney = parseFloat(moneySlider.value);
     const rate = parseFloat(interestSlider.value) / 100;
+    const cycles = parseInt(cyclesSlider.value);
 
-    document.getElementById('valueDisplay').textContent = '€' + valuePerWorker;
-    document.getElementById('wageDisplay').textContent = '€' + wagePerWorker;
-    document.getElementById('costDisplay').textContent = '€' + costs;
-    document.getElementById('loanDisplay').textContent = fmt(loan);
-    document.getElementById('interestDisplay').textContent = (rate * 100).toFixed(1) + '%';
+    moneyDisplay.textContent = formatMoney(baseMoney);
+    interestDisplay.textContent = (rate * 100).toFixed(1) + '%';
+    cyclesDisplay.textContent = cycles;
 
-    const totalValue = valuePerWorker * WORKERS;
-    const totalWages = wagePerWorker * WORKERS;
-    const profit = totalValue - totalWages - costs;
-    const profitYear = profit * WORK_DAYS;
-    const loanOwed = loan * (1 + rate);
+    // Each cycle, the full money supply is lent out and must be repaid with interest.
+    // Debt compounds because the interest from previous cycles remains unpaid (it can't all be paid).
+    // Cumulative debt after N cycles of lending baseMoney at rate:
+    // Each cycle adds baseMoney * (1 + rate) in obligations, but only baseMoney in money.
+    // So cumulative debt = baseMoney * (1 + rate)^cycles (compound)
+    // But let's model it more concretely:
+    // Each cycle: lend baseMoney, owe baseMoney*(1+rate).
+    // The interest portion (baseMoney*rate) can never be fully repaid, so it accumulates.
 
-    const wagePct = ((totalWages / totalValue) * 100).toFixed(0);
-    const costPct = ((costs / totalValue) * 100).toFixed(0);
-    const profitPct = ((profit / totalValue) * 100).toFixed(0);
+    let cycleData = [];
+    let cumulativeDebt = 0;
 
-    // Results
-    document.getElementById('rValue').textContent = fmt(totalValue);
-    document.getElementById('rPerWorker').textContent = '€' + valuePerWorker;
-    document.getElementById('rWages').textContent = fmt(totalWages);
-    document.getElementById('rWagePct').textContent = wagePct + '% of value';
-
-    const profitEl = document.getElementById('rProfit');
-    const profitPctEl = document.getElementById('rProfitPct');
-    profitEl.textContent = fmt(profit);
-    profitPctEl.textContent = profitPct + '% of value';
-
-    if (profit > 0) {
-      profitEl.className = 'result-number red';
-    } else if (profit === 0) {
-      profitEl.className = 'result-number yellow';
-    } else {
-      profitEl.className = 'result-number red';
+    for (let i = 1; i <= cycles; i++) {
+      // Each cycle, the existing money (baseMoney) is lent out again.
+      // New debt from this cycle = baseMoney * rate (the interest portion that can't be repaid from the pool)
+      // But actually, let's show compound growth of outstanding obligations.
+      // Total debt after cycle i = baseMoney * ((1+rate)^i)
+      // This represents: each cycle, the unpayable interest rolls over and itself accrues interest.
+      cumulativeDebt = baseMoney * Math.pow(1 + rate, i);
+      cycleData.push({
+        cycle: i,
+        money: baseMoney,
+        debt: cumulativeDebt
+      });
     }
 
-    const perWorkerProfit = WORKERS > 0 ? profit / 1 : 0; // owner gets all profit
-    const ownerToWorkerRatio = wagePerWorker > 0 ? (profit / wagePerWorker) : 0;
-    document.getElementById('rPerWorkerProfit').textContent = fmt(profit);
-    document.getElementById('rPerWorkerProfit').className = profit >= 0 ? 'result-number red' : 'result-number yellow';
+    const finalDebt = cycleData[cycleData.length - 1].debt;
+    const gap = baseMoney - finalDebt;
+    const ratio = finalDebt / baseMoney;
 
-    let multipleText = '';
-    if (profit > 0 && wagePerWorker > 0) {
-      multipleText = Math.round(ownerToWorkerRatio) + '× a single worker\'s daily wage';
-    } else if (profit <= 0) {
-      multipleText = 'No profit to collect';
-    }
-    document.getElementById('rMultiple').textContent = multipleText;
+    resultMoney.textContent = formatMoney(baseMoney);
+    resultDebt.textContent = formatMoney(finalDebt);
+    resultGap.textContent = '−' + formatMoney(Math.abs(gap));
+    resultRatio.textContent = ratio.toFixed(2) + '×';
+    ratioInline.textContent = '€' + ratio.toFixed(2);
 
-    // Live split bar
-    const liveSplit = document.getElementById('liveSplit');
-    liveSplit.innerHTML = '';
-
-    if (totalValue > 0) {
-      const wFlex = Math.max(0, totalWages / totalValue);
-      const cFlex = Math.max(0, costs / totalValue);
-      const pFlex = Math.max(0, profit / totalValue);
-
-      if (profit >= 0) {
-        liveSplit.innerHTML = `
-          <div class="live-seg seg-wages" style="flex: ${wFlex};">
-            <div class="live-seg-label">Wages</div>
-            <div class="live-seg-value">${wagePct}%</div>
-          </div>
-          <div class="live-seg seg-materials" style="flex: ${cFlex};">
-            <div class="live-seg-label">Costs</div>
-            <div class="live-seg-value">${costPct}%</div>
-          </div>
-          <div class="live-seg seg-profit" style="flex: ${Math.max(0.01, pFlex)};">
-            <div class="live-seg-label">Profit</div>
-            <div class="live-seg-value">${profitPct}%</div>
-          </div>
-        `;
-      } else {
-        // Loss state
-        liveSplit.innerHTML = `
-          <div class="live-seg seg-wages" style="flex: ${wFlex};">
-            <div class="live-seg-label">Wages</div>
-            <div class="live-seg-value">${wagePct}%</div>
-          </div>
-          <div class="live-seg seg-materials" style="flex: ${cFlex};">
-            <div class="live-seg-label">Costs</div>
-            <div class="live-seg-value">${costPct}%</div>
-          </div>
-        `;
-      }
-    }
-
-    // Loan status
-    const loanProfitYearEl = document.getElementById('loanProfitYear');
-    const loanOwedEl = document.getElementById('loanOwed');
-    const loanBar = document.getElementById('loanBar');
-    const loanTextEl = document.getElementById('loanText');
-
-    loanProfitYearEl.textContent = fmt(profitYear);
-    loanOwedEl.textContent = fmt(loanOwed);
-
-    if (profit <= 0) {
-      loanBar.style.width = '0%';
-      loanBar.style.background = '#ff6b54';
-      loanTextEl.textContent = '✗ No profit. The company cannot repay the loan. It defaults.';
-      loanTextEl.className = 'loan-status-text status-fail';
-    } else if (profitYear >= loanOwed) {
-      const pct = Math.min(100, (loanOwed / profitYear) * 100);
-      loanBar.style.width = '100%';
-      loanBar.style.background = '#5cb885';
-      loanTextEl.textContent = '✓ Loan can be repaid — profit covers debt in about ' + Math.ceil(loanOwed / profit) + ' working days';
-      loanTextEl.className = 'loan-status-text status-ok';
-    } else {
-      const pct = (profitYear / loanOwed) * 100;
-      loanBar.style.width = pct + '%';
-      loanBar.style.background = '#e8c547';
-      loanTextEl.textContent = '⚠ Annual profit only covers ' + Math.round(pct) + '% of the loan. The company struggles.';
-      loanTextEl.className = 'loan-status-text status-warn';
-    }
-
-    // Tension messages
-    const tensionDiv = document.getElementById('tensionMessage');
-    const tensionP = tensionDiv.querySelector('p');
-
-    if (profit <= 0 && totalWages >= totalValue - costs) {
-      tensionDiv.style.display = 'block';
-      tensionP.innerHTML = 'You paid workers fairly — and the company collapsed. There\'s no profit to repay the loan. In this system, <strong style="color:#ff6b54;">fair wages and solvency are mutually exclusive.</strong> That\'s not a policy problem. That\'s an architectural one.';
-    } else if (wagePct >= 70) {
-      tensionDiv.style.display = 'block';
-      tensionP.innerHTML = 'Workers are getting ' + wagePct + '% of value — but profit is thin. The company can barely service its debt. In practice, <strong style="color:#e8c547;">market competition and creditors would force wages back down.</strong>';
-    } else if (wagePct <= 25) {
-      tensionDiv.style.display = 'block';
-      tensionP.innerHTML = 'Workers produce everything and receive ' + wagePct + '% of the value. The owner collects ' + profitPct + '%. <strong style="color:#ff6b54;">This is the normal state of affairs.</strong>';
-    } else {
-      tensionDiv.style.display = 'none';
-    }
+    renderChart(cycleData);
   }
 
-  valueSlider.addEventListener('input', calculate);
-  wageSlider.addEventListener('input', calculate);
-  costSlider.addEventListener('input', calculate);
-  loanSlider.addEventListener('input', calculate);
-  interestSlider.addEventListener('input', calculate);
+  function renderChart(data) {
+    const maxVal = Math.max(...data.map(d => d.debt));
+    const chartHeight = 200; // usable pixel height for bars
 
+    // Y axis labels
+    yLabels.innerHTML = '';
+    const ySteps = 4;
+    for (let i = ySteps; i >= 0; i--) {
+      const val = (maxVal / ySteps) * i;
+      const label = document.createElement('div');
+      label.className = 'chart-y-label';
+      label.textContent = formatMoney(val);
+      yLabels.appendChild(label);
+    }
+
+    // Bars — use pixel heights, not percentages
+    chartBars.innerHTML = '';
+    data.forEach(d => {
+      const group = document.createElement('div');
+      group.className = 'chart-bar-group';
+
+      const pair = document.createElement('div');
+      pair.className = 'chart-bar-pair';
+
+      const moneyH = Math.max(2, (d.money / maxVal) * chartHeight);
+      const debtH = Math.max(2, (d.debt / maxVal) * chartHeight);
+
+      const moneyBar = document.createElement('div');
+      moneyBar.className = 'chart-bar money';
+      moneyBar.style.height = moneyH + 'px';
+
+      const debtBar = document.createElement('div');
+      debtBar.className = 'chart-bar debt';
+      debtBar.style.height = debtH + 'px';
+
+      pair.appendChild(moneyBar);
+      pair.appendChild(debtBar);
+
+      const label = document.createElement('div');
+      label.className = 'chart-cycle-label';
+      label.textContent = d.cycle;
+
+      group.appendChild(pair);
+      group.appendChild(label);
+      chartBars.appendChild(group);
+    });
+  }
+
+  moneySlider.addEventListener('input', calculate);
+  interestSlider.addEventListener('input', calculate);
+  cyclesSlider.addEventListener('input', calculate);
+
+  // Initial render
   calculate();
 </script>
 
