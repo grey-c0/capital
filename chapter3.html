@@ -718,6 +718,39 @@
     line-height: 1.4;
   }
 
+  /* === CHAPTER NAV === */
+  .chapter-nav {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chapter-nav a {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .chapter-nav a:hover { opacity: 0.7; }
+
+  .chapter-nav .page-indicator {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  .chapter-nav .nav-placeholder {
+    min-width: 80px;
+  }
+
   .footer {
     text-align: center;
     padding: 2rem;
@@ -1023,6 +1056,12 @@
       What happens when it can't grow anymore?
     </div>
   </div>
+</div>
+
+<div class="chapter-nav">
+  <a href="chapter2.html">&larr; Chapter 2</a>
+  <span class="page-indicator">3 / 3</span>
+  <div class="nav-placeholder"></div>
 </div>
 
 <div class="footer">
