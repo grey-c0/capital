@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate-og": "node scripts/generate-og.mjs"
+  },
+  "devDependencies": {
+    "og-img": "^0.2.1"
+  }
+}
